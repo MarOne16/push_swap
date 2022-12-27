@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:23:53 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/27 15:44:32 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/27 16:36:12 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ void pa(t_list **stack_a, t_list **stack_b)
 
 void	ra(t_list** a)
 {
-	t_list	*tmp;
-
 	if (!(*a)->next)
 		return;
+	t_list	*tmp;
+
 	tmp = (*a);
 	while (tmp->next)
 		tmp = tmp->next;

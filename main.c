@@ -160,33 +160,52 @@ void indexin(t_list **a , t_list **c)
 	}
 	*a = rest_a;
 }
+
+int lastindex(t_list **a,int i)
+{
+	t_list *ls = *a;
+	int x = 0;
+	while (ls->next)
+	{
+		if (ls->d[i] == ls->next->d[i])
+			x += 1;
+		else
+			x = 0;
+		ls = ls->next;
+	}
+	return (x);
+}
+
 int bitonicsort(t_list **stack_a, t_list **stack_b ,int i)
 {
 	int c = 0;
+	int x = 1;
     int b = lstbinarysize(stack_a);
-		t_list *tmp = *stack_a;
-    while (b-- >= 0)
+    while (b-- > 0)
     {
-	
+		int min = lastindex(stack_a,b);
 		int x = i - 1;
 		int z = 0;
-		while (--x >= 0)
-		{	
+		while (--x >= min)
+		{
 			if ((*stack_a)->d[b] == '1')
 			{
 				ra(stack_a);
 				c += 1;
 			}
-
 			else
 			{
 				pb(stack_a , stack_b);
 				c += 1;
 				z++;
 			}
+			
 		}
 		while (z-- > 0)
+		{
 			pa(stack_a , stack_b);
+			c += 1;
+		}
     }
 	return (c);
 }
@@ -217,17 +236,13 @@ int main(int argc, char *argv[])
 	// checkrepeat(&a); TODO if true break
 	clone = clonelst(argv);
 	indexin(&a,&clone);
+	free(clone);
 	lstbinary(&a);
 	int c = bitonicsort(&a , &b , i);
-	printf("\n{%d}",c);
-	while (a)
-	{
-		printf("a[%d]=%s->%d\n",a->index,a->d,a->content);
-		a = a->next;
-	}
-	/*while (b)
-	{
-		printf("b[%d]=%s->%d\n",b->index,b->d,b->content);
-		b = b->next;
-	}*/
+	// while (a)
+	// {
+	// 	printf("a[%d]=%s->%d\n",a->index,a->d,a->content);
+	// 	a = a->next;
+	// }
+	while(1);
 }
