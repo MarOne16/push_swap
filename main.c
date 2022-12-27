@@ -90,7 +90,6 @@ int lstbinarysize(t_list **a)
 		(*a) = (*a)->next;
 	}
 	(*a) = rest;
-	printf("[%d]\n",i);
 	return (i);
 }
 
@@ -161,6 +160,36 @@ void indexin(t_list **a , t_list **c)
 	}
 	*a = rest_a;
 }
+int bitonicsort(t_list **stack_a, t_list **stack_b ,int i)
+{
+	int c = 0;
+    int b = lstbinarysize(stack_a);
+		t_list *tmp = *stack_a;
+    while (b-- >= 0)
+    {
+	
+		int x = i - 1;
+		int z = 0;
+		while (--x >= 0)
+		{	
+			if ((*stack_a)->d[b] == '1')
+			{
+				ra(stack_a);
+				c += 1;
+			}
+
+			else
+			{
+				pb(stack_a , stack_b);
+				c += 1;
+				z++;
+			}
+		}
+		while (z-- > 0)
+			pa(stack_a , stack_b);
+    }
+	return (c);
+}
 
 int main(int argc, char *argv[])
 {
@@ -189,32 +218,16 @@ int main(int argc, char *argv[])
 	clone = clonelst(argv);
 	indexin(&a,&clone);
 	lstbinary(&a);
-	// printf("%c\n",a->d[1]);
-	// int bit_val = 8;
-	// t_list *tmp = a;
-	// while (--bit_val)
-	// {
-	// 	tmp = a;
-	// 	while (tmp && tmp->next && tmp->d && bit_val >= 0)
-	// 	{
-	// 		if(tmp->d[bit_val] == '1')
-	// 			printf("[sa]\n");
-	// 		else
-	// 		{
-	// 			printf("[pb]\n");
-	// 		}
-	// 		tmp = tmp->next;
-	// 	}
-	// }
+	int c = bitonicsort(&a , &b , i);
+	printf("\n{%d}",c);
 	while (a)
 	{
 		printf("a[%d]=%s->%d\n",a->index,a->d,a->content);
 		a = a->next;
 	}
-	while (b)
+	/*while (b)
 	{
 		printf("b[%d]=%s->%d\n",b->index,b->d,b->content);
 		b = b->next;
-	}
-	// forcefree(a,b);
+	}*/
 }

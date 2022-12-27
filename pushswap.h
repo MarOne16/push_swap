@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:56:12 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/26 17:16:28 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/26 22:12:22 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_list	*ft_lstlast(t_list *lst);
 void	delete_first_node(t_list **head);
 void	sa(t_list** head);
 void	pb(t_list	**a,	t_list	**b);
+void pa(t_list **stack_a, t_list **stack_b);
 void	ra(t_list** a);
 void	rb(t_list** b);
 void	ss(t_list** b, t_list **a);

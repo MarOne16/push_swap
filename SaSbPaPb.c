@@ -6,25 +6,18 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:23:53 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/22 19:48:47 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/27 15:44:32 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	sa(t_list** a) {
-
-	t_list	*sa;
-
-	if (!(*a)->next)
-	{
-		// write(1, "sa\n", 3);
-		return ;
-	}
-	sa = *a;
-	*a = (*a)->next;
-	sa->next = (*a)->next;
-	(*a)->next = sa;
+void sa(t_list **a)
+{
+    t_list *temp = (*a);
+    (*a) = (*a)->next;
+    temp->next = (*a)->next;
+    (*a)->next = temp;
 }
 
 void	sb(t_list** b)
@@ -67,20 +60,33 @@ void	ss(t_list** b, t_list **a)//TODO edit
 	(*b)->next = sb;
 	// write(1, "sb\n", 3);
 }
-void	pb(t_list	**a,	t_list	**b)
+
+void	pb(t_list	**stack_a,	t_list	**stack_b)
 {
-	t_list	*head2;
-	
-	if ((*a))
-	{
-		head2 = *a;
-		*a = (*a)->next;
-		head2->next = *b;
-		*b = head2;
-		head2 = NULL;
-	}
-	//printf("pb\n");//TODO replace by ft_pu_str
+    if (*stack_a == NULL)
+        return ;
+
+    t_list  *top_a;
+    top_a = *stack_a;
+    *stack_a = (*stack_a)->next;
+    top_a->next = *stack_b;
+    *stack_b = top_a;
+	printf("pb\n");
 }
+
+void pa(t_list **stack_a, t_list **stack_b)
+{
+    if (*stack_b == NULL)
+        return ;
+
+    t_list  *top_b;
+    top_b = *stack_b;
+    *stack_b = (*stack_b)->next;
+    top_b->next = *stack_a;
+    *stack_a = top_b;
+	printf("pa\n");
+}
+
 void	ra(t_list** a)
 {
 	t_list	*tmp;
@@ -88,11 +94,12 @@ void	ra(t_list** a)
 	if (!(*a)->next)
 		return;
 	tmp = (*a);
-	while ((tmp)->next)
-		(tmp) = (tmp)->next;
+	while (tmp->next)
+		tmp = tmp->next;
 	tmp->next = (*a);
 	(*a) = (*a)->next;
 	tmp->next->next = NULL;
+	printf("ra\n");
 }
 
 void	rb(t_list** b)
