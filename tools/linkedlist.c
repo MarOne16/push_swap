@@ -6,13 +6,13 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:55:50 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/28 13:50:58 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/29 18:19:44 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-t_list	*ft_lstnew(int content , int s ,char *bn)
+t_list	*ft_lstnew(int content, int s, char *bn)
 {
 	t_list	*node;
 
@@ -20,7 +20,7 @@ t_list	*ft_lstnew(int content , int s ,char *bn)
 	if (!node)
 		return (0);
 	node -> content = content;
-	node->index=s;
+	node->index = s;
 	node->d = bn;
 	node -> next = 0;
 	return (node);

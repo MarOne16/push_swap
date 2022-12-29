@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:49:26 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/29 12:11:32 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/29 18:21:20 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ t_list	*clonelst(char **argv)
 {
 	int		i;
 	t_list	*a;
+	t_list	*ls;
+	int		z;
 
 	i = 0;
 	a = NULL;
 	while (argv[++i])
 	{
-		int	z;
-		t_list	*ls;
-
 		z = atoi(argv[i]);
 		ls = ft_lstnew(z, i, 0);
 		ft_lstadd_back(&a, ls);
 	}
-	bubble_sort(&a);
+	if (!bubble_sort(&a))
+		exit(1);
 	return (a);
 }
 
@@ -52,36 +52,33 @@ void	indexin(t_list **a, t_list **c)
 	*a = rest_a;
 }
 
-int	lastindex(t_list **a, int i)
+int	feedlst(char **spl, t_list **a, int i)
 {
-	t_list	*ls;
-	int		x;
-
-	ls = *a;
-	x = 0;
-	while (ls->next)
+	while (spl[++i])
 	{
-		if (ls->d[i] == ls->next->d[i])
-			x += 1;
-		else
-			x = 0;
-		ls = ls->next;
+		checknbr(spl[i]);
+		if ((ft_atoi(spl[i]) > 2147483647) || (ft_atoi(spl[i]) < -2147483648))
+		{
+			write(2, "Error", 5);
+			exit(2);
+		}
+		ft_lstadd_back(a, ft_lstnew(atoi(spl[i]), i, 0));
 	}
-	return (x);
+	return (i);
 }
 
-void	bitonicsort(t_list **stack_a, t_list **stack_b, int i)
+void	bitonicsort(t_list **stack_a, int i)
 {
-	int	x;
-	int	b;
-	int	min;
-	int	z;
+	int		x;
+	int		b;
+	int		z;
+	t_list	*stack_b;
 
 	x = 1;
+	stack_b = NULL;
 	b = lstbinarysize(stack_a);
 	while (b-- > 0)
 	{
-		min = lastindex(stack_a, b);
 		x = i - 1;
 		z = 0;
 		while (--x >= 0)
@@ -90,11 +87,11 @@ void	bitonicsort(t_list **stack_a, t_list **stack_b, int i)
 				ra(stack_a);
 			else if ((*stack_a)->d[b] == '0')
 			{
-				pb(stack_a, stack_b);
+				pb(stack_a, &stack_b);
 				z++;
 			}
 		}
 		while (z-- > 0)
-			pa(stack_a, stack_b);
+			pa(stack_a, &stack_b);
 	}
 }

@@ -6,35 +6,33 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:57:36 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/28 20:44:57 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/29 18:48:28 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-
-void	rb(t_list** b)
+void	rb(t_list **b)
 {
 	t_list	*tmp;
 
 	if (!(*b)->next)
-		return;
+		return ;
 	tmp = (*b);
 	while ((tmp)->next)
 		(tmp) = (tmp)->next;
 	tmp->next = (*b);
 	(*b) = (*b)->next;
 	tmp->next->next = NULL;
-	
 }
 
-void	rr(t_list** a, t_list **b)
+void	rr(t_list **a, t_list **b)
 {
 	t_list	*tmp1;
 	t_list	*tmp;
 
 	if (!((*b)->next || (*a)->next))
-		return;
+		return ;
 	tmp1 = (*b);
 	while ((tmp1)->next)
 		(tmp1) = (tmp1)->next;
@@ -49,26 +47,29 @@ void	rr(t_list** a, t_list **b)
 	tmp->next->next = NULL;
 }
 
-void	rra(t_list** a)
+void	rra(t_list **a)
 {
-	t_list	*last;
-	t_list	*first;
+	t_list *temp;
+	t_list *prev;
 
-	if (!(*a)->next)
+	if (*a == NULL || (*a)->next == NULL)
 		return;
-	first = *a;
-	last = *a;
-	while (last->next)
-		last = last->next;
-	while (first->next->next)
+
+	prev = NULL;
+	temp = *a;
+	while (temp->next != NULL)
 	{
-		first=first->next;
+		prev = temp;
+		temp = temp->next;
 	}
-	first->next=NULL;
-	ft_lstadd_front(a,last);
+	prev->next = NULL;
+	temp->next = *a;
+	*a = temp;
+	write(1, "rra\n", 4);
 }
 
-void	rrb(t_list** b)
+
+void	rrb(t_list **b)
 {
 	t_list	*last;
 	t_list	*first;
@@ -79,8 +80,23 @@ void	rrb(t_list** b)
 		last = last->next;
 	while (first->next->next)
 	{
-		first=first->next;
+		first = first->next;
 	}
-	first->next=NULL;
-	ft_lstadd_front(b,last);
+	first->next = NULL;
+	ft_lstadd_front(b, last);
+}
+
+void	ra(t_list	**a)
+{
+	t_list	*tmp;
+
+	if (!(*a)->next)
+		return ;
+	tmp = (*a);
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = (*a);
+	(*a) = (*a)->next;
+	tmp->next->next = NULL;
+	write(1, "ra\n", 3);
 }

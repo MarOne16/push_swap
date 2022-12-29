@@ -6,13 +6,13 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:59:14 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/28 22:03:14 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/29 18:42:13 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int checknbr(char *str)
+int	checknbr(char *str)
 {
 	int	i;
 
@@ -20,12 +20,31 @@ int checknbr(char *str)
 	while (str[i])
 	{
 		if ((str[i] < '0' || str[i] > '9' ) && (str[i] != '-' && str[i] != '+'))
-			exit(1);
-		if ((str[i] == '-' || str[i] == '+') && (str[i + 1] == '-' || str[i + 1] == '+'))
-			exit(1);
+		{
+			write(2, "Error", 5);
+			exit(2);
+		}
+		if ((str[i] == '-' || str[i] == '+')
+			&& (str[i + 1] == '-' || str[i + 1] == '+'))
+		{
+			write(2, "Error", 5);
+			exit(2);
+		}
 		i++;
 	}
 	return (1);
+}
+
+void	forcfree(t_list	*clone)
+{
+	t_list	*help;
+
+	while (clone)
+	{
+		help = clone;
+		clone = clone->next;
+		free(help);
+	}
 }
 
 int	checkrepeat(t_list **ls)
@@ -40,7 +59,11 @@ int	checkrepeat(t_list **ls)
 		while (ls2)
 		{
 			if ((*ls)->content == ls2->content)
-				return (1);
+			{
+				forcfree(*ls);
+				write(2, "Error", 5);
+				exit(2);
+			}
 			ls2 = ls2->next;
 		}
 		(*ls) = (*ls)->next;
@@ -49,20 +72,7 @@ int	checkrepeat(t_list **ls)
 	return (0);
 }
 
-void forcfree(t_list	*clone)
-{
-	t_list	*help;
-
-	while(clone)
-	{
-		help = clone;
-		clone = clone->next;
-		free(help);
-	}
-	
-}
-
-char** splitargv(char* argv[])
+char	**splitargv(char	*argv[])
 {
 	char	*spl;
 	int		i;
@@ -70,42 +80,35 @@ char** splitargv(char* argv[])
 
 	i = 1;
 	spl = NULL;
-    while (argv[i])
-    {
-        spl = ft_join(spl, argv[i]);
-        spl = ft_join(spl, " ");
-        i++;
-    }
-    tmp = ft_split(spl, ' ');
-    return (tmp);
+	while (argv[i])
+	{
+		spl = ft_join(spl, argv[i]);
+		spl = ft_join(spl, " ");
+		i++;
+	}
+	tmp = ft_split(spl, ' ');
+	free(spl);
+	return (tmp);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	int		i;
-	// int		x = 0;
 	char	**spl;
 	t_list	*a;
-	t_list	*b;
 	t_list	*clone;
-	// t_list *ls;
-	i = -1;
-	a = NULL;
-	b = NULL;
+
 	if (argc < 2)
 		return (0);
+	i = -1;
+	a = NULL;
 	spl = splitargv(argv);
-	while (spl[++i])
-	{
-		// checknbr(spl[i]);
-		int	n = atoi(spl[i]);
-		ft_lstadd_back(&a, ft_lstnew(n, i , 0));
-	}
-	// checkrepeat(&a); TODO if true break
-	// printf("[%d]\n",i);
+	i = feedlst(spl, &a, i);
+	checkrepeat(&a);
 	clone = clonelst(argv);
-	indexin(&a,&clone);
+	three(&a,i);
+	indexin(&a, &clone);
+	forcfree(clone);
 	lstbinary(&a);
-	bitonicsort(&a , &b , i + 1);
-	// forcfree(clone);
+	bitonicsort(&a, i + 1);
 }

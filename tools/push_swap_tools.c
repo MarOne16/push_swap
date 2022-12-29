@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:37:11 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/28 12:17:46 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/29 17:26:33 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,15 @@ void	lstbinary(t_list **a)
 	*a = rest_a;
 }
 
-void	bubble_sort(t_list **head)
+int	bubble_sort(t_list **head)
 {
 	t_list	*current;
 	int		sorted;
 	int		temp;
+	int		s;
 
 	sorted = 0;
+	s = 0;
 	while (!sorted)
 	{
 		sorted = 1;
@@ -95,8 +97,10 @@ void	bubble_sort(t_list **head)
 				current->content = current->next->content;
 				current->next->content = temp;
 				sorted = 0;
+				s = 1;
 			}
 			current = current->next;
 		}
 	}
+	return (s);
 }
