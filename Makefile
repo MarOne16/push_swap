@@ -1,25 +1,53 @@
-NAME = pushswap.a
-CC = cc
-CFLAGS =-Wall -Wextra -Werror
-AR = ar -rc
-LIBFT_H = pushswap.h
-FILES = linkedlist.c\
-		SaSbPaPb.c\
 				
-OBJS =$(FILES:.c=.o)
+########################################################################
+####################### My Makefile ##############################
+########################################################################
+
+# Compiler settings
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+ 
+
+# Makefile settings
+NAME = push_swap			
+PUSHSRC = tools/linkedlist.c tools/SaSbPaPb.c tools/push_swap_tools.c tools/push_swap_tools2.c tools/moves2.c\
+split/ft_splite.c split/ft_substr.c split/ft_strjoin.c push_swap.c
+HEADER = pushswap.h
+
+
+############## The referencing #############
+
+PUSHOBJ = ${PUSHSRC:.c=.o}
+
+
+# UNIX-based OS variables & settings
+
+RM = rm -rf
+
+########################################################################
+####################### Targets beginning here #########################
+########################################################################
 
 all: $(NAME)
 
-$(NAME) : $(OBJS)
-	$(AR) $@ $^
 
-%.o :%.c $(LIBFT_H)
-	$(CC) $(CFLAGS) -c $<
+# Builds the app
+
+$(NAME)  : $(PUSHOBJ) $(HEADER)
+	$(CC) $(CFLAGS) $(PUSHOBJ) -I $(HEADER) -o $(NAME)
+
+
+# Building rule for .o files and its .c
+
+
+################### Cleaning rules for Unix-based OS ###################
 
 clean:
-	rm -f $(OBJS) $(OBJS_BOUNUS)
+			$(RM) $(PUSHOBJ)
 
-fclean: clean
-	rm -f $(NAME)
-	
-re: clean all
+fclean:		clean
+			$(RM) push_swap 
+
+re:			fclean all
+
+.PHONY:		all clean fclean re 

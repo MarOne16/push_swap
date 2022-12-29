@@ -6,20 +6,11 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:55:50 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/26 17:16:56 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/28 13:50:58 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
-
-void	ft_lstadd_front(t_list **lst, t_list *new)
-{
-	if (lst && new)
-	{
-		new -> next = *lst;
-		*lst = new;
-	}
-}
+#include "../pushswap.h"
 
 t_list	*ft_lstnew(int content , int s ,char *bn)
 {
@@ -33,6 +24,15 @@ t_list	*ft_lstnew(int content , int s ,char *bn)
 	node->d = bn;
 	node -> next = 0;
 	return (node);
+}
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (lst && new)
+	{
+		new -> next = *lst;
+		*lst = new;
+	}
 }
 
 t_list	*ft_lstlast(t_list *lst)

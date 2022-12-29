@@ -1,4 +1,4 @@
-#include "pushswap.h"
+#include "../pushswap.h"
 
 static int	nb_c(char const *s, char c)
 {

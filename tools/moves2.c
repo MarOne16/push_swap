@@ -1,18 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrr.c                                              :+:      :+:    :+:   */
+/*   moves2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/22 19:47:40 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/22 19:52:20 by mqaos            ###   ########.fr       */
+/*   Created: 2022/12/27 22:57:36 by mqaos             #+#    #+#             */
+/*   Updated: 2022/12/28 20:44:57 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"pushswap.h"
+#include "../pushswap.h"
 
-static void	rra2(t_list** a)
+
+void	rb(t_list** b)
+{
+	t_list	*tmp;
+
+	if (!(*b)->next)
+		return;
+	tmp = (*b);
+	while ((tmp)->next)
+		(tmp) = (tmp)->next;
+	tmp->next = (*b);
+	(*b) = (*b)->next;
+	tmp->next->next = NULL;
+	
+}
+
+void	rr(t_list** a, t_list **b)
+{
+	t_list	*tmp1;
+	t_list	*tmp;
+
+	if (!((*b)->next || (*a)->next))
+		return;
+	tmp1 = (*b);
+	while ((tmp1)->next)
+		(tmp1) = (tmp1)->next;
+	tmp1->next = (*b);
+	(*b) = (*b)->next;
+	tmp1->next->next = NULL;
+	tmp = (*a);
+	while ((tmp)->next)
+		(tmp) = (tmp)->next;
+	tmp->next = (*a);
+	(*a) = (*a)->next;
+	tmp->next->next = NULL;
+}
+
+void	rra(t_list** a)
 {
 	t_list	*last;
 	t_list	*first;
@@ -31,7 +68,7 @@ static void	rra2(t_list** a)
 	ft_lstadd_front(a,last);
 }
 
-static void	rrb2(t_list** b)
+void	rrb(t_list** b)
 {
 	t_list	*last;
 	t_list	*first;
@@ -46,9 +83,4 @@ static void	rrb2(t_list** b)
 	}
 	first->next=NULL;
 	ft_lstadd_front(b,last);
-}
-void	rrr(t_list **a, t_list** b)
-{
-	rra2(a);
-    rrb2(b);
 }
