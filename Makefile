@@ -11,7 +11,7 @@ CFLAGS = -Wall -Wextra -Werror
 # Makefile settings
 NAME = push_swap			
 PUSHSRC = tools/linkedlist.c tools/moves1.c tools/push_swap_tools.c tools/push_swap_tools2.c tools/moves2.c\
-tools/three.c split/ft_splite.c split/ft_substr.c split/ft_strjoin.c split/ft_atoi.c push_swap.c 
+tools/quick_sort.c split/ft_splite.c split/ft_substr.c split/ft_strjoin.c split/ft_atoi.c push_swap.c 
 HEADER = pushswap.h
 
 

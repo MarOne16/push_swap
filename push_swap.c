@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:59:14 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/29 18:42:13 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/29 22:27:35 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ int	main(int argc, char *argv[])
 	i = feedlst(spl, &a, i);
 	checkrepeat(&a);
 	clone = clonelst(argv);
-	three(&a,i);
 	indexin(&a, &clone);
+	quick_sort(&a,i);
 	forcfree(clone);
 	lstbinary(&a);
 	bitonicsort(&a, i + 1);
