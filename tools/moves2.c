@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:57:36 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/29 18:48:28 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/29 22:43:16 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,11 @@ void	rr(t_list **a, t_list **b)
 
 void	rra(t_list **a)
 {
-	t_list *temp;
-	t_list *prev;
+	t_list	*temp;
+	t_list	*prev;
 
 	if (*a == NULL || (*a)->next == NULL)
-		return;
-
+		return ;
 	prev = NULL;
 	temp = *a;
 	while (temp->next != NULL)
@@ -67,7 +66,6 @@ void	rra(t_list **a)
 	*a = temp;
 	write(1, "rra\n", 4);
 }
-
 
 void	rrb(t_list **b)
 {

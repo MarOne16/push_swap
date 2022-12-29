@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:24:17 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/29 22:38:49 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/29 22:42:37 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	sort_foor(t_list **a)
 	b = NULL;
 	while ((*a)->index != 1)
 		ra(a);
-	pb(a,&b);
+	pb(a, &b);
 	sort_three(a);
-	pa(a,&b);
+	pa(a, &b);
 }
 
 void	sort_five(t_list **a)
