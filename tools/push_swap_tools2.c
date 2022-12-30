@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:49:26 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/29 18:21:20 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/30 19:36:02 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,14 @@ void	bitonicsort(t_list **stack_a, int i)
 		while (--x >= 0)
 		{
 			if ((*stack_a)->d[b] == '1')
-				ra(stack_a);
+				ra(stack_a , 1);
 			else if ((*stack_a)->d[b] == '0')
 			{
-				pb(stack_a, &stack_b);
+				pb(stack_a, &stack_b ,1);
 				z++;
 			}
 		}
 		while (z-- > 0)
-			pa(stack_a, &stack_b);
+			pa(stack_a, &stack_b ,1);
 	}
 }

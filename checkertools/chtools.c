@@ -1,18 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   chtools.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 13:59:14 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/30 19:02:54 by mqaos            ###   ########.fr       */
+/*   Created: 2022/12/30 18:36:49 by mqaos             #+#    #+#             */
+/*   Updated: 2022/12/30 21:02:31 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
-void	forcfree(t_list	*clone)
+int	checknbrc(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] < '0' || str[i] > '9' ) && (str[i] != '-' && str[i] != '+'))
+		{
+			write(2, "Error", 5);
+			exit(2);
+		}
+		if ((str[i] == '-' || str[i] == '+')
+			&& (str[i + 1] == '-' || str[i + 1] == '+'))
+		{
+			write(2, "Error", 5);
+			exit(2);
+		}
+		i++;
+	}
+	return (1);
+}
+
+void	forcefree(t_list	*clone)
 {
 	t_list	*help;
 
@@ -24,7 +47,7 @@ void	forcfree(t_list	*clone)
 	}
 }
 
-int	checkrepeat(t_list **ls)
+int	checkrepeatc(t_list **ls)
 {
 	t_list	*ls2;
 	t_list	*rest;
@@ -37,7 +60,7 @@ int	checkrepeat(t_list **ls)
 		{
 			if ((*ls)->content == ls2->content)
 			{
-				forcfree(*ls);
+				forcefree(*ls);
 				write(2, "Error", 5);
 				exit(2);
 			}
@@ -49,7 +72,22 @@ int	checkrepeat(t_list **ls)
 	return (0);
 }
 
-char	**splitargv(char	*argv[])
+int	feedlstc(char **spl, t_list **a, int i)
+{
+	while (spl[++i])
+	{
+		checknbrc(spl[i]);
+		if ((ft_atoi(spl[i]) > 2147483647) || (ft_atoi(spl[i]) < -2147483648))
+		{
+			write(2, "Error", 5);
+			exit(2);
+		}
+		ft_lstadd_back(a, ft_lstnew(atoi(spl[i]), i, 0));
+	}
+	return (i);
+}
+
+char	**splitargvc(char	*argv[])
 {
 	char	*spl;
 	int		i;
@@ -66,26 +104,4 @@ char	**splitargv(char	*argv[])
 	tmp = ft_split(spl, ' ');
 	free(spl);
 	return (tmp);
-}
-
-int	main(int argc, char *argv[])
-{
-	int		i;
-	char	**spl;
-	t_list	*a;
-	t_list	*clone;
-
-	if (argc < 2)
-		return (0);
-	i = -1;
-	a = NULL;
-	spl = splitargv(argv);
-	i = feedlst(spl, &a, i);
-	checkrepeat(&a);
-	clone = clonelst(argv);
-	indexin(&a, &clone);
-	forcfree(clone);
-	quick_sort(&a, i);
-	lstbinary(&a);
-	bitonicsort(&a, i + 1);
 }

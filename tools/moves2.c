@@ -6,13 +6,13 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:57:36 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/29 22:43:16 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/30 19:13:18 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-void	rb(t_list **b)
+void	rb(t_list **b ,int x)
 {
 	t_list	*tmp;
 
@@ -24,9 +24,11 @@ void	rb(t_list **b)
 	tmp->next = (*b);
 	(*b) = (*b)->next;
 	tmp->next->next = NULL;
+	if (x == 1)
+		write(1, "pa\n", 3);
 }
 
-void	rr(t_list **a, t_list **b)
+void	rr(t_list **a, t_list **b ,int x)
 {
 	t_list	*tmp1;
 	t_list	*tmp;
@@ -45,9 +47,11 @@ void	rr(t_list **a, t_list **b)
 	tmp->next = (*a);
 	(*a) = (*a)->next;
 	tmp->next->next = NULL;
+	if (x == 1)
+		write(1, "rr\n", 3);
 }
 
-void	rra(t_list **a)
+void	rra(t_list **a ,int x)
 {
 	t_list	*temp;
 	t_list	*prev;
@@ -64,27 +68,32 @@ void	rra(t_list **a)
 	prev->next = NULL;
 	temp->next = *a;
 	*a = temp;
-	write(1, "rra\n", 4);
+	if (x == 1)
+		write(1, "rra\n", 3);
 }
 
-void	rrb(t_list **b)
+void rrb(t_list **b ,int x)
 {
-	t_list	*last;
-	t_list	*first;
+	t_list *temp;
+	t_list *prev;
 
-	first = *b;
-	last = *b;
-	while (last->next)
-		last = last->next;
-	while (first->next->next)
+	if (*b == NULL || (*b)->next == NULL)
+		return ;
+	prev = NULL;
+	temp = *b;
+	while (temp->next != NULL)
 	{
-		first = first->next;
+		prev = temp;
+		temp = temp->next;
 	}
-	first->next = NULL;
-	ft_lstadd_front(b, last);
+	prev->next = NULL;
+	temp->next = *b;
+	*b = temp;
+	if (x == 1)
+		write(1, "rrb\n", 3);
 }
 
-void	ra(t_list	**a)
+void	ra(t_list	**a ,int x)
 {
 	t_list	*tmp;
 
@@ -96,5 +105,6 @@ void	ra(t_list	**a)
 	tmp->next = (*a);
 	(*a) = (*a)->next;
 	tmp->next->next = NULL;
-	write(1, "ra\n", 3);
+	if (x == 1)
+		write(1, "ra\n", 3);;
 }
