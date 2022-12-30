@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:56:12 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/30 21:01:10 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/30 21:06:21 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,15 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 void	delete_first_node(t_list **head);
-void	sa(t_list	**head ,int x);
-void	sb(t_list	**b ,int x);
-void	pb(t_list	**a,	t_list	**b ,int x);
-void	pa(t_list **stack_a, t_list **stack_b ,int x);
-void	ra(t_list	**a ,int x);
-void	rb(t_list	**b ,int x);
-void	ss(t_list	**b, t_list **a ,int x);
-void	rr(t_list	**a, t_list **b ,int x);
-void	rra(t_list	**a ,int x);
-void	rrb(t_list	**b ,int x);
-void	rrr(t_list	**a, t_list	**b ,int x);
+void	sa(t_list	**head, int x);
+void	sb(t_list	**b, int x);
+void	pb(t_list	**a,	t_list	**b, int x);
+void	pa(t_list **stack_a, t_list **stack_b, int x);
+void	ra(t_list	**a, int x);
+void	rb(t_list	**b, int x);
+void	ss(t_list	**b, t_list **a, int x);
+void	rr(t_list	**a, t_list **b, int x);
+void	rra(t_list	**a, int x);
+void	rrb(t_list	**b, int x);
+void	rrr(t_list	**a, t_list	**b, int x);
 #endif

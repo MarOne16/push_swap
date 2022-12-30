@@ -6,13 +6,13 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:23:53 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/30 19:52:58 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/30 21:07:00 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-void	sa(t_list **a ,int x)
+void	sa(t_list **a, int x)
 {
 	t_list	*temp;
 
@@ -26,7 +26,7 @@ void	sa(t_list **a ,int x)
 		write(1, "sa\n", 3);
 }
 
-void	sb(t_list	**b ,int x)
+void	sb(t_list	**b, int x)
 {
 	t_list	*sb;
 
@@ -40,7 +40,7 @@ void	sb(t_list	**b ,int x)
 		write(1, "sb\n", 3);
 }
 
-void	ss(t_list	**b, t_list	**a ,int x)
+void	ss(t_list	**b, t_list	**a, int x)
 {
 	t_list	*sa;
 	t_list	*sb;
@@ -59,7 +59,7 @@ void	ss(t_list	**b, t_list	**a ,int x)
 		write(1, "ss\n", 3);
 }
 
-void	pb(t_list	**stack_a,	t_list	**stack_b ,int x)
+void	pb(t_list	**stack_a,	t_list	**stack_b, int x)
 {
 	t_list	*top_a;
 
@@ -73,7 +73,7 @@ void	pb(t_list	**stack_a,	t_list	**stack_b ,int x)
 		write(1, "pb\n", 3);
 }
 
-void	pa(t_list **stack_a, t_list **stack_b ,int x)
+void	pa(t_list **stack_a, t_list **stack_b, int x)
 {
 	t_list	*top_b;
 

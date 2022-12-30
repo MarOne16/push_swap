@@ -6,13 +6,13 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:57:36 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/30 19:13:18 by mqaos            ###   ########.fr       */
+/*   Updated: 2022/12/30 21:08:37 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-void	rb(t_list **b ,int x)
+void	rb(t_list **b, int x)
 {
 	t_list	*tmp;
 
@@ -28,7 +28,7 @@ void	rb(t_list **b ,int x)
 		write(1, "pa\n", 3);
 }
 
-void	rr(t_list **a, t_list **b ,int x)
+void	rr(t_list **a, t_list **b, int x)
 {
 	t_list	*tmp1;
 	t_list	*tmp;
@@ -51,7 +51,7 @@ void	rr(t_list **a, t_list **b ,int x)
 		write(1, "rr\n", 3);
 }
 
-void	rra(t_list **a ,int x)
+void	rra(t_list **a, int x)
 {
 	t_list	*temp;
 	t_list	*prev;
@@ -72,10 +72,10 @@ void	rra(t_list **a ,int x)
 		write(1, "rra\n", 3);
 }
 
-void rrb(t_list **b ,int x)
+void	rrb(t_list **b, int x)
 {
-	t_list *temp;
-	t_list *prev;
+	t_list	*temp;
+	t_list	*prev;
 
 	if (*b == NULL || (*b)->next == NULL)
 		return ;
@@ -93,7 +93,7 @@ void rrb(t_list **b ,int x)
 		write(1, "rrb\n", 3);
 }
 
-void	ra(t_list	**a ,int x)
+void	ra(t_list	**a, int x)
 {
 	t_list	*tmp;
 
@@ -106,5 +106,5 @@ void	ra(t_list	**a ,int x)
 	(*a) = (*a)->next;
 	tmp->next->next = NULL;
 	if (x == 1)
-		write(1, "ra\n", 3);;
+		write(1, "ra\n", 3);
 }
