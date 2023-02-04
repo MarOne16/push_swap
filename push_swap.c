@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:59:14 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/30 19:02:54 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/04 19:58:52 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int argc, char *argv[])
 	spl = splitargv(argv);
 	i = feedlst(spl, &a, i);
 	checkrepeat(&a);
-	clone = clonelst(argv);
+	clone = clonelst(spl);
 	indexin(&a, &clone);
 	forcfree(clone);
 	quick_sort(&a, i);

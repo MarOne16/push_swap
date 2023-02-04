@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:57:36 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/30 21:08:37 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/04 20:10:41 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	rra(t_list **a, int x)
 	temp->next = *a;
 	*a = temp;
 	if (x == 1)
-		write(1, "rra\n", 3);
+		write(1, "rra\n", 4);
 }
 
 void	rrb(t_list **b, int x)
@@ -90,7 +90,7 @@ void	rrb(t_list **b, int x)
 	temp->next = *b;
 	*b = temp;
 	if (x == 1)
-		write(1, "rrb\n", 3);
+		write(1, "rrb\n", 4);
 }
 
 void	ra(t_list	**a, int x)
