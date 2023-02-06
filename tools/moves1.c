@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 17:23:53 by mqaos             #+#    #+#             */
-/*   Updated: 2022/12/30 21:07:00 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/06 20:21:10 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,8 @@ void	sb(t_list	**b, int x)
 
 void	ss(t_list	**b, t_list	**a, int x)
 {
-	t_list	*sa;
-	t_list	*sb;
-
-	if (!(*a)->next || !(*b)->next)
-		return ;
-	sa = *a;
-	*a = (*a)->next;
-	sa->next = (*a)->next;
-	(*a)->next = sa;
-	sb = *b;
-	*b = (*b)->next;
-	sb->next = (*b)->next;
-	(*b)->next = sb;
+	sa(a, 0);
+	sb(b, 0);
 	if (x == 1)
 		write(1, "ss\n", 3);
 }

@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:57:36 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/04 20:10:41 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/06 20:25:37 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	rb(t_list **b, int x)
 {
 	t_list	*tmp;
 
-	if (!(*b)->next)
+	if (*b == NULL || (*b)->next == NULL)
 		return ;
 	tmp = (*b);
 	while ((tmp)->next)
@@ -30,23 +30,8 @@ void	rb(t_list **b, int x)
 
 void	rr(t_list **a, t_list **b, int x)
 {
-	t_list	*tmp1;
-	t_list	*tmp;
-
-	if (!((*b)->next || (*a)->next))
-		return ;
-	tmp1 = (*b);
-	while ((tmp1)->next)
-		(tmp1) = (tmp1)->next;
-	tmp1->next = (*b);
-	(*b) = (*b)->next;
-	tmp1->next->next = NULL;
-	tmp = (*a);
-	while ((tmp)->next)
-		(tmp) = (tmp)->next;
-	tmp->next = (*a);
-	(*a) = (*a)->next;
-	tmp->next->next = NULL;
+	ra(a, 0);
+	rb(b, 0);
 	if (x == 1)
 		write(1, "rr\n", 3);
 }
@@ -97,7 +82,7 @@ void	ra(t_list	**a, int x)
 {
 	t_list	*tmp;
 
-	if (!(*a)->next)
+	if (*a == NULL || (*a)->next == NULL)
 		return ;
 	tmp = (*a);
 	while (tmp->next)

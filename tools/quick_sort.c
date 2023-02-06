@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:24:17 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/04 21:06:12 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/05 14:30:44 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,22 +80,22 @@ void	quick_sort(t_list **a, int i)
 	if (i == 2)
 	{
 		sa(a, 1);
-		exit(1);
+		exit(0);
 	}
 	if (i == 3)
 	{
 		sort_three(a);
-		exit(1);
+		exit(0);
 	}
 	if (i == 5)
 	{
 		sort_five(a);
-		exit(1);
+		exit(0);
 	}
 	if (i == 4)
 	{
 		sort_foor(a);
-		exit(1);
+		exit(0);
 	}
 	return ;
 }

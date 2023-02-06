@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:56:12 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/04 19:59:05 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/06 21:07:31 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ char	**splitargvc(char	*argv[]);
 int		ft_move(char *line, t_list **a, t_list **b);
 char	*get_next_line(int fd);
 void	quick_sort(t_list **a, int i);
-char	**splitargv(char	*argv[] );
+void	checkarg(char **arg);
+char	**splitargv(char *argv[]);
 int		feedlst(char **spl, t_list **a, int i);
 int		checknbr(char *str);
 long	ft_atoi(char *str);

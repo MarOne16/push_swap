@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:59:14 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/04 19:58:52 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/06 20:01:33 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,32 @@ void	forcfree(t_list	*clone)
 		help = clone;
 		clone = clone->next;
 		free(help);
+	}
+}
+
+void	checkarg(char **arg)
+{
+	int	i;
+	int	j;
+	int	x;
+
+	i = 1;
+	x = 0;
+	while (arg[i])
+	{
+		j = 0;
+		while (arg[i][j])
+		{
+			if (arg[i][j] >= '0' && arg[i][j] <= '9')
+				x = 1;
+			j++;
+		}
+		if (x == 0)
+		{
+			write(1, "Error", 5);
+			exit(10);
+		}
+		i++;
 	}
 }
 
@@ -39,7 +65,7 @@ int	checkrepeat(t_list **ls)
 			{
 				forcfree(*ls);
 				write(2, "Error", 5);
-				exit(2);
+				exit(0);
 			}
 			ls2 = ls2->next;
 		}
@@ -79,6 +105,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	i = -1;
 	a = NULL;
+	checkarg(argv);
 	spl = splitargv(argv);
 	i = feedlst(spl, &a, i);
 	checkrepeat(&a);
