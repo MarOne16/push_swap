@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:57:36 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/06 20:25:37 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/19 18:20:35 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	rb(t_list **b, int x)
 	(*b) = (*b)->next;
 	tmp->next->next = NULL;
 	if (x == 1)
-		write(1, "pa\n", 3);
+		write(1, "rb\n", 3);
 }
 
 void	rr(t_list **a, t_list **b, int x)

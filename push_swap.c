@@ -6,11 +6,78 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:59:14 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/06 20:01:33 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/19 19:37:57 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+void	myalgo(t_list **a, int size)
+{
+	t_list *b;
+	b = NULL;
+	int size2;
+	int size3 = size;
+	int i = 0;
+	int x = 0;
+	if (size >= 500)
+	{
+		size2 = size / 10; 
+		x = 10;
+	}
+	else
+	{
+		size2 = size / 5;
+		x = 5;
+	}
+	while (x--)
+	{
+		int max = i;
+		i += size2;
+		while ((max <= i))
+		{
+			if ((*a)->index <= i)
+			{
+				if ((*a)->index > (i - (size2 / 2)))
+				{
+					pb(a,&b,1);
+					rb(&b,1);
+				}
+				else
+					pb(a,&b,1);
+				max++;
+				if (max == i)
+					break;
+				size--;
+				
+			}
+			else
+				ra(a,1);
+		}
+	}
+	while (*a && a)
+		pb(a,&b,1);
+	while (b &&  size3)
+	{
+		t_list *r = b;
+		
+		int lenmax = 0;
+		while (r && r->index != size3 - 1)
+		{
+			lenmax++;
+			r = r->next;
+		}
+		while (b && b->index != size3 - 1)
+		{
+			if (lenmax < (size3 / 2))
+				rb(&b,1);
+			else
+				rrb(&b,1);
+		}
+		pa(a,&b,1);
+		size3--;
+	}
+}
 
 void	forcfree(t_list	*clone)
 {
@@ -34,18 +101,18 @@ void	checkarg(char **arg)
 	x = 0;
 	while (arg[i])
 	{
-		j = 0;
-		while (arg[i][j])
+		j = -1;
+		while (arg[i][++j])
 		{
 			if (arg[i][j] >= '0' && arg[i][j] <= '9')
 				x = 1;
-			j++;
+			if ((arg[i][j] >= '0' && arg[i][j] <= '9') &&
+			(arg[i][j + 1] == '-' || arg[i][j + 1] == '+') &&
+			(arg[i][j + 2] >= '0' && arg[i][j + 2] <= '9'))
+				errr();
 		}
 		if (x == 0)
-		{
-			write(1, "Error", 5);
-			exit(10);
-		}
+			errr();
 		i++;
 	}
 }
@@ -111,8 +178,9 @@ int	main(int argc, char *argv[])
 	checkrepeat(&a);
 	clone = clonelst(spl);
 	indexin(&a, &clone);
-	forcfree(clone);
 	quick_sort(&a, i);
-	lstbinary(&a);
-	bitonicsort(&a, i + 1);
+	myalgo(&a,i);
+	forcfree(clone);
+	// lstbinary(&a);
+	// bitonicsort(&a, i + 1);
 }

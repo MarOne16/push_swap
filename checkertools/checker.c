@@ -6,11 +6,37 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:18:42 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/05 15:34:49 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/17 21:13:25 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
+
+void	checkargfb(char **arg)
+{
+	int	i;
+	int	j;
+	int	x;
+
+	i = 1;
+	x = 0;
+	while (arg[i])
+	{
+		j = -1;
+		while (arg[i][++j])
+		{
+			if (arg[i][j] >= '0' && arg[i][j] <= '9')
+				x = 1;
+			if ((arg[i][j] >= '0' && arg[i][j] <= '9') &&
+			(arg[i][j + 1] == '-' || arg[i][j + 1] == '+') &&
+			(arg[i][j + 2] >= '0' && arg[i][j + 2] <= '9'))
+				errr();
+		}
+		if (x == 0)
+			errr();
+		i++;
+	}
+}
 
 int	ft_move(char *line, t_list	**a, t_list	**b)
 {
@@ -80,6 +106,7 @@ int	main(int argc, char *argv[])
 	a = NULL;
 	b = NULL;
 	spl = splitargvc(argv);
+	checkargfb(argv);
 	i = feedlstc(spl, &a, i);
 	checkrepeatc(&a);
 	sorting(&a, &b);

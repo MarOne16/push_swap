@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:56:12 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/06 21:07:31 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/17 20:24:33 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_list
 }					t_list;
 int		feedlstc(char **spl, t_list **a, int i);
 int		checkrepeatc(t_list **ls);
+void	errr(void);
 void	forcefree(t_list	*clone);
 char	**splitargvc(char	*argv[]);
 int		ft_move(char *line, t_list **a, t_list **b);
