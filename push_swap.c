@@ -6,11 +6,43 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:59:14 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/19 19:37:57 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/19 23:02:41 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+int abs(int i)
+{
+	if (i < 0)
+		return(-i);
+	return(i);
+}
+
+void	sort(t_list **a,t_list **b,int size3 ,int lenmax)
+{
+		while (b && (*b)->index != size3 - 1)
+		{
+			if (lenmax < (size3 / 2))
+				rb(b,1);
+			else
+				rrb(b,1);
+		}
+		pa(a,b,1);
+}
+
+int countmove(t_list *r,int size3)
+{
+	int lenmax = 0;
+	t_list *reset = r;
+	while (r && r->index != size3 - 1)
+	{
+		lenmax++;
+		r = r->next;
+	}
+	r = reset;
+	return(lenmax);
+}
 
 void	myalgo(t_list **a, int size)
 {
@@ -22,8 +54,8 @@ void	myalgo(t_list **a, int size)
 	int x = 0;
 	if (size >= 500)
 	{
-		size2 = size / 10; 
-		x = 10;
+		size2 = size / 9; 
+		x = 9;
 	}
 	else
 	{
@@ -57,24 +89,22 @@ void	myalgo(t_list **a, int size)
 	}
 	while (*a && a)
 		pb(a,&b,1);
-	while (b &&  size3)
+	while (b && size3)
 	{
 		t_list *r = b;
-		
-		int lenmax = 0;
-		while (r && r->index != size3 - 1)
+		int lenmax = countmove(r,size3);
+		int slenmax = countmove(r,size3 - 1);
+		int l = abs(lenmax - (size3 / 2));
+		int s = abs(slenmax - (size3 / 2));
+		if (s > l && b->next)
 		{
-			lenmax++;
-			r = r->next;
+			sort(a,&b,size3 - 1,slenmax);
+			sort(a,&b,size3,lenmax);
+			sa(a,1);
+			size3--;
 		}
-		while (b && b->index != size3 - 1)
-		{
-			if (lenmax < (size3 / 2))
-				rb(&b,1);
-			else
-				rrb(&b,1);
-		}
-		pa(a,&b,1);
+		else
+			sort(a,&b,size3,lenmax);
 		size3--;
 	}
 }
