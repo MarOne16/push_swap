@@ -6,107 +6,125 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 13:59:14 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/19 23:02:41 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/20 14:35:38 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int abs(int i)
+int	abs(int i)
 {
 	if (i < 0)
-		return(-i);
-	return(i);
+		return (-i);
+	return (i);
 }
 
-void	sort(t_list **a,t_list **b,int size3 ,int lenmax)
+void	sort(t_list **a, t_list **b, int size3, int lenmax)
 {
-		while (b && (*b)->index != size3 - 1)
-		{
-			if (lenmax < (size3 / 2))
-				rb(b,1);
-			else
-				rrb(b,1);
-		}
-		pa(a,b,1);
+	while (b && (*b)->index != size3 - 1)
+	{
+		if (lenmax < (size3 / 2))
+			rb(b, 1);
+		else
+			rrb(b, 1);
+	}
+	pa(a, b, 1);
 }
 
-int countmove(t_list *r,int size3)
+
+int	countmove(t_list *r, int size3)
 {
-	int lenmax = 0;
-	t_list *reset = r;
+	int		lenmax;
+	t_list	*reset;
+
+	lenmax = 0;
+	reset = r;
 	while (r && r->index != size3 - 1)
 	{
 		lenmax++;
 		r = r->next;
 	}
 	r = reset;
-	return(lenmax);
+	return (lenmax);
+}
+
+void	pushtostackb(t_list **a, t_list **b, int x, int size2)
+{
+	int	i;
+	int	max;
+
+	i = 0;
+	while (x--)
+	{
+		max = i;
+		i += size2;
+		while ((max != i))
+		{
+			if ((*a)->index <= i && max++)
+			{
+				if ((*a)->index > (i - (size2 / 2)))
+				{
+					pb(a, b, 1);
+					rb(b, 1);
+				}
+				else
+					pb(a, b, 1);
+			}
+			else
+				ra(a, 1);
+		}
+	}
+}
+
+void	pushtoa(t_list	**a, t_list **b, int size3)
+{
+	int		lenmax;
+	int		slenmax;
+	t_list	*r;
+
+	while ((*b) && size3)
+	{
+		r = (*b);
+		lenmax = countmove(r, size3);
+		slenmax = countmove(r, size3 - 1);
+		if (abs(slenmax - (size3 / 2)) > abs(lenmax - (size3 / 2))
+			&& (*b)->next)
+		{
+			sort(a, b, size3 - 1, slenmax);
+			sort(a, b, size3, lenmax);
+			sa(a, 1);
+			size3--;
+		}
+		else
+			sort(a, b, size3, lenmax);
+		size3--;
+	}
 }
 
 void	myalgo(t_list **a, int size)
 {
-	t_list *b;
+	t_list	*b;
+	int		size2;
+	int		size3;
+	int		x;
+
+	size3 = size;
 	b = NULL;
-	int size2;
-	int size3 = size;
-	int i = 0;
-	int x = 0;
+	x = 0;
 	if (size >= 500)
 	{
-		size2 = size / 9; 
-		x = 9;
+		size2 = size / 8; 
+		x = 8;
 	}
 	else
 	{
-		size2 = size / 5;
-		x = 5;
+		size2 = size / 4;
+		x = 4;
 	}
-	while (x--)
-	{
-		int max = i;
-		i += size2;
-		while ((max <= i))
-		{
-			if ((*a)->index <= i)
-			{
-				if ((*a)->index > (i - (size2 / 2)))
-				{
-					pb(a,&b,1);
-					rb(&b,1);
-				}
-				else
-					pb(a,&b,1);
-				max++;
-				if (max == i)
-					break;
-				size--;
-				
-			}
-			else
-				ra(a,1);
-		}
-	}
+	pushtostackb(a, &b, x, size2);
 	while (*a && a)
-		pb(a,&b,1);
-	while (b && size3)
-	{
-		t_list *r = b;
-		int lenmax = countmove(r,size3);
-		int slenmax = countmove(r,size3 - 1);
-		int l = abs(lenmax - (size3 / 2));
-		int s = abs(slenmax - (size3 / 2));
-		if (s > l && b->next)
-		{
-			sort(a,&b,size3 - 1,slenmax);
-			sort(a,&b,size3,lenmax);
-			sa(a,1);
-			size3--;
-		}
-		else
-			sort(a,&b,size3,lenmax);
-		size3--;
-	}
+		pb(a, &b, 1);
+	pushtoa(a, &b, size3);
 }
 
 void	forcfree(t_list	*clone)
