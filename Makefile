@@ -10,9 +10,10 @@ CFLAGS = -Wall -Wextra -Werror
 
 # Makefile settings
 NAME = push_swap
-NAME2 = mchecker			
+NAME2 = checker			
 PUSHSRC = tools/linkedlist.c tools/moves1.c tools/push_swap_tools.c tools/push_swap_tools2.c tools/moves2.c\
-tools/quick_sort.c split/ft_splite.c split/ft_substr.c split/ft_strjoin.c split/ft_atoi.c push_swap.c checknbr.c
+tools/quick_sort.c split/ft_splite.c split/ft_substr.c split/ft_strjoin.c split/ft_atoi.c push_swap.c checknbr.c\
+newalgo.c
 
 PUSHSRC2 = tools/linkedlist.c tools/moves1.c tools/push_swap_tools.c tools/push_swap_tools2.c tools/moves2.c\
 tools/quick_sort.c split/ft_splite.c split/ft_substr.c  split/ft_atoi.c \

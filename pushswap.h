@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:56:12 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/17 20:24:33 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/20 14:39:41 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef struct s_list
 	char			*d;
 	struct s_list	*next;
 }					t_list;
+int		abs(int i);
+void	sort(t_list **a, t_list **b, int size3, int lenmax);
+int		countmove(t_list *r, int size3);
+void	pushtoa(t_list	**a, t_list **b, int size3);
+void	pushtostackb(t_list **a, t_list **b, int x, int size2);
+void	newalgo(t_list **a, int size);
 int		feedlstc(char **spl, t_list **a, int i);
 int		checkrepeatc(t_list **ls);
 void	errr(void);

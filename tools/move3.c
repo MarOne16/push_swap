@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:06:46 by mqaos             #+#    #+#             */
-/*   Updated: 2023/02/04 18:28:52 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/02/20 14:43:22 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,11 @@ void	rrr(t_list **a, t_list **b, int x)
 	rrar(b);
 	if (x == 1)
 		write(1, "rrr\n", 4);
+}
+
+int	abs(int i)
+{
+	if (i < 0)
+		return (-i);
+	return (i);
 }
